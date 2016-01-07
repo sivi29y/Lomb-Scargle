@@ -137,7 +137,7 @@ public class XYErrorRendererDemo2 extends ApplicationFrame {
      */
     public static void main(String[] args) {
         XYErrorRendererDemo2 chart = new XYErrorRendererDemo2(
-                "Sivan Langer's Assignment: Scargle-Lomb chart");
+                "Sivan's Assignment: Scargle-Lomb chart");
 
         chart.pack();
 
