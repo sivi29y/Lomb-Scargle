@@ -9,7 +9,7 @@ public class ReadData {
     ArrayList<Double[]> input = new ArrayList<>();
     ArrayList<Sample> sampleLists = new ArrayList<>();
 
-
+      //testing
 //    public static void main(String[] args) {
 //
 //        ReadData obj = new ReadData();
