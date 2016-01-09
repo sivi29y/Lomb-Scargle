@@ -1,11 +1,15 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+import static java.util.concurrent.ThreadLocalRandom.current;
+
 /*
 *
-*    Lomb -Scargle Periodogram based on Python scipy library in Java
+*    Lomb -Scargle Periodogram  in Java (based on Python's scipy library Lomb-Scargle implementation)
 *
 *    Sivan  January 2016
+*
+*
 *
  */
 
@@ -21,34 +25,55 @@ public class LombScargle {
     static ArrayList<Double[]> caluculateLombScargle(Integer nIn) {
 
         Double A = 1.2;
-        Double w = 1.2;
+        Double w = 1.0;
 
         ArrayList<Double[]> samples_withS = new ArrayList<>();
         samples_withS = samples;
 
 
-//      Double  Period = 3.0;
-//      Double Frequency =  1.0/3.0;
+        Double  Period = 3.0;
+        Double Frequency =  1.0/3.0;
         Double Phi = 0.5 * Math.PI;
         Integer nOut = nIn * 100;
         Double FracPoint = 0.9;
-        Integer r = new Random().nextInt(nIn);
+        Random r = new Random(51);
 
+        Double[] R = new Double[nIn];
+        for (int i =0; i<R.length; i++){
+            R[i]=   current().nextDouble(0, 1);
+        }
 
         Double[] X = linspace(0.01, 10 * Math.PI, nIn);
-        normval = X.length; // For normalization of the periodogram
+
+        ArrayList <Double> newX = new ArrayList<>();
+
+        for (int i=0; i<nIn; i++){
+            if (R[i] >= FracPoint  ){
+                newX.add(X[i]);
+            }
+        }
 
 
-        Double[] Y = new Double[X.length];
+        normval = newX.size(); // For normalization of the periodogram
+
+
+        Double[] Y = new Double[newX.size()];
         for (int i = 0; i < Y.length; i++) {
-            Y[i] = A * Math.sin(w * X[i] + Phi);
+            Y[i] = A * Math.sin(w * newX.get(i) + Phi);
         }
         //defines the array of frequencies
         Double[] F = linspace(0.01, 10, nOut);
-        ArrayList<Double[]> Scargle_Lomb_Periodogram = Scargle(X, Y, F);
+
+        Double[] newXArray = new Double[newX.size()];
+        newXArray = newX.toArray(newXArray);
+
+
+
+
+        ArrayList<Double[]> Scargle_Lomb_Periodogram = Scargle(newXArray, Y, F);
+
 
         return Scargle_Lomb_Periodogram;
-
 
     }
 
