@@ -2,14 +2,20 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import static java.util.concurrent.ThreadLocalRandom.current;
-
 /*****************************
-*
-*    Lomb -Scargle Periodogram  in Java (based on Python's scipy library Lomb-Scargle implementation)
-*
-*    Sivan  January 2016
+ *
+ *
+ *
+ *
+ *    Lomb -Scargle Periodogram  in Java (based on Python's scipy library Lomb-Scargle implementation)
+ *
+ *
+ *           Sivan  January 2016
+ *
+ *
+ *
+ *
 **********************************/
-
 public class LombScargle {
 
     static ArrayList<Double[]> samples;
