@@ -3,18 +3,12 @@ import java.util.Random;
 
 import static java.util.concurrent.ThreadLocalRandom.current;
 
-/*
+/*****************************
 *
 *    Lomb -Scargle Periodogram  in Java (based on Python's scipy library Lomb-Scargle implementation)
 *
 *    Sivan  January 2016
-*
-*
-*
- */
-
-
-
+**********************************/
 
 public class LombScargle {
 
@@ -147,7 +141,7 @@ public class LombScargle {
         return lin;
     }
 
-
+    //can be used to apply Lomb-Scargle from this class
     public static void main(String[] args) {
 
         samples = readData();
@@ -156,7 +150,7 @@ public class LombScargle {
     }
 
 
-    private static ArrayList<Double[]> readData() {
+    protected static ArrayList<Double[]> readData() {
         //getting hold of data
         ReadData dataObject = new ReadData();
         samples = dataObject.run();
